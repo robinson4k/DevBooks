@@ -17,12 +17,10 @@ function responseJSON(array $options = []): JsonResponse
 
     $response = [
         'message' => $message,
-        'count'   => is_array($result) ? count($result) : null,
         'result'    => $result,
         'errors'    => $errors
     ];
 
-    // Remove null values from the response
     $response = array_filter($response, function ($value) {
         return !is_null($value);
     });

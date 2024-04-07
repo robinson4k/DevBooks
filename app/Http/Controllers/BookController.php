@@ -54,6 +54,7 @@ class BookController extends Controller
         ]);
     }
 
+
     public function destroy($id)
     {
         $sets = Book::find($id);
