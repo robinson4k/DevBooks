@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Store\StoreRequest;
+use App\Http\Requests\StoreRequest;
 use App\Models\Store;
 use Illuminate\Http\Request;
 
@@ -25,6 +25,12 @@ class StoreController extends Controller
             'address' => $request->address,
             'active' => $request->active
         ]);
+        if ($sets) {
+            if (isset($request->books)) {
+                $sets->sync = $sets->books()->sync($request->books);
+            }
+            $sets->books = $sets->books()->get();
+        }
         return responseJSON([
             'result' => $sets
         ]);

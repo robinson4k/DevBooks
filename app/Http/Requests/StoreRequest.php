@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Store;
+namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -17,7 +17,10 @@ class StoreRequest extends FormRequest
         return [
             "name" => "required|string|max:255",
             "address" => "required|string|max:255",
-            "active" => "nullable|boolean"
+            "active" => "nullable|boolean",
+
+            'books' => 'nullable|array',
+            'books.*' => 'nullable|integer|exists:books,id',
         ];
     }
 }
