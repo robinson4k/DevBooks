@@ -46,8 +46,8 @@ The available API routes are:
 
 |Method   |Route                |Description                  |Controller                  |Authentication|
 |---------|---------------------|-----------------------------|----------------------------|--------------|
-|POST     |`/api/login`         |Authenticate user            |`AuthController@login`      |Não           |
-|POST     |`/api/register`      |Register new user            |`RegisterController@store`  |Não           |
+|POST     |`/api/login`         |Authenticate user            |`AuthController@login`      |No            |
+|POST     |`/api/register`      |Register new user            |`RegisterController@store`  |No            |
 |POST     |`/api/logout`        |Logout user                  |`AuthController@logout`     |Bearer Token  |
 |GET      |`/api/books`         |List all books               |`BookController@index`      |Bearer Token  |
 |POST     |`/api/books`         |Create a new book            |`BookController@store`      |Bearer Token  |
