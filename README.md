@@ -35,11 +35,11 @@ If there is any process using port 80, stop it before continuing.
 docker-compose up -d
 ```
 
-5.  **Acesse a aplicação:**
+5.  **Access the application:**
 
 The application will be available at `http://localhost:80`.
 
-6.  **Teste a API:**
+6.  **Test the API:**
 
 The available API routes are:
 
