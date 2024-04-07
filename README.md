@@ -33,6 +33,8 @@ If there is any process using port 80, stop it before continuing.
 
 ```bash
 docker-compose up -d
+docker-compose exec app php artisan key:generate
+docker-compose exec app php artisan migrate
 ```
 
 5.  **Access the application:**
@@ -60,6 +62,9 @@ The available API routes are:
 |PUT/PATCH|`/api/stores/{store}`|Update a specific store      |`StoreController@update`    |Bearer Token  |
 |DELETE   |`/api/stores/{store}`|Remove a specific store      |`StoreController@destroy`   |Bearer Token  |
 
+7.  **Access the phpMyAdmin:**
+
+The application will be available at `http://localhost:8080`.
 
 **Notes:**
 
