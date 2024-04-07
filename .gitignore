@@ -19,4 +19,3 @@ yarn-error.log
 /.vscode
 /docker/mysql/data
 /docker/nginx/logs
-/docker/nginx/conf.d/*

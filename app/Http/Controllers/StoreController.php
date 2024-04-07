@@ -10,7 +10,7 @@ class StoreController extends Controller
 {
     public function index(Request $request)
     {
-        $sets = Store::all();
+        $sets = Store::with('books')->all();
         return responseJSON([
             'result' => $sets
         ]);

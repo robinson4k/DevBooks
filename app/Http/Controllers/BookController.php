@@ -10,7 +10,7 @@ class BookController extends Controller
 {
     public function index(Request $request)
     {
-        $sets = Book::all();
+        $sets = Book::with('stores')->all();
         return responseJSON([
             'result' => $sets
         ]);
