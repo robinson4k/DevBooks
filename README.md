@@ -1,35 +1,35 @@
-#   Instalação do DevBooks com Autenticação Sanctum
+## DevBooks Installation with Sanctum Authentication
 
-**Pré-requisitos:**
+**Prerequisites:**
 
--   Docker instalado e configurado
--   Git instalado
--   Postman ou ferramenta similar para teste de API
+-   Docker installed and configured
+-   Git installed
+-   Postman or similar tool for API testing
 
-**Passos:**
+**Steps:**
 
-1.  **Clone o repositório:**
+1.  **Clone the repository:**
 
 ```bash
-git clone https://github.com/seu-usuario/seu-repositorio.git
-cd seu-projeto
+git clone https://github.com/robinson4k/DevBooks.git
+cd DevBooks
 ```
 
-2.  **Crie o arquivo .env:**
+2.  **Create the .env file:**
 
-Copie o conteúdo do arquivo `.env.example` para `.env` e faça as alterações necessárias, como banco de dados e credenciais.
+Copy the contents of the `.env.example` file to `.env` and make the necessary changes, such as database credentials.
 
-3.  **Verifique a porta 80:**
+3.  **Check port 80:**
 
-Antes de iniciar o Docker, certifique-se de que a porta 80 esteja livre. Você pode verificar isso usando o comando:
+Before starting Docker, make sure port 80 is free. You can check this using the command:
 
 ```bash
 netstat -ano | grep ':80'
 ```
 
-Se houver algum processo usando a porta 80, pare-o antes de continuar.
+If there is any process using port 80, stop it before continuing.
 
-4.  **Inicie o Docker:**
+4.  **Start Docker:**
 
 ```bash
 docker-compose up -d
@@ -37,35 +37,33 @@ docker-compose up -d
 
 5.  **Acesse a aplicação:**
 
-A aplicação estará disponível em `http://localhost:80`.
+The application will be available at `http://localhost:80`.
 
 6.  **Teste a API:**
 
-As rotas disponíveis para a API são:
+The available API routes are:
 
 
-|Método |Rota |Descrição |Controller |Autenticação|
-|---------|---------------------|-----------------------------|----------------------------|------------|
-|POST |`/api/login`  |Autenticação de usuário |`AuthController@login`  |Não |
-|POST |`/api/register`  |Registro de novo usuário |`RegisterController@store`  |Não |
-|POST |`/api/logout`  |Desautenticação de usuário |`AuthController@logout`  |Bearer Token|
-|GET |`/api/books`  |Lista todos os livros |`BookController@index`  |Bearer Token|
-|POST |`/api/books`  |Cria um novo livro |`BookController@store`  |Bearer Token|
-|GET |`/api/books/{book}`  |Exibe um livro específico |`BookController@show`  |Bearer Token|
-|PUT/PATCH|`/api/books/{book}`  |Atualiza um livro específico |`BookController@update`  |Bearer Token|
-|DELETE |`/api/books/{book}`  |Remove um livro específico |`BookController@destroy`  |Bearer Token|
-|GET |`/api/stores`  |Lista todas as lojas |`StoreController@index`  |Bearer Token|
-|POST |`/api/stores`  |Cria uma nova loja |`StoreController@store`  |Bearer Token|
-|GET |`/api/stores/{store}`|Exibe uma loja específica |`StoreController@show`  |Bearer Token|
-|PUT/PATCH|`/api/stores/{store}`|Atualiza uma loja específica |`StoreController@update`  |Bearer Token|
-|DELETE |`/api/stores/{store}`|Remove uma loja específica |`StoreController@destroy`  |Bearer Token|
+|Method   |Route                |Description                  |Controller                  |Authentication|
+|---------|---------------------|-----------------------------|----------------------------|--------------|
+|POST     |`/api/login`         |Authenticate user            |`AuthController@login`      |Não           |
+|POST     |`/api/register`      |Register new user            |`RegisterController@store`  |Não           |
+|POST     |`/api/logout`        |Logout user                  |`AuthController@logout`     |Bearer Token  |
+|GET      |`/api/books`         |List all books               |`BookController@index`      |Bearer Token  |
+|POST     |`/api/books`         |Create a new book            |`BookController@store`      |Bearer Token  |
+|GET      |`/api/books/{book}`  |Displays a specific book     |`BookController@show`       |Bearer Token  |
+|PUT/PATCH|`/api/books/{book}`  |Update a specific book       |`BookController@update`     |Bearer Token  |
+|DELETE   |`/api/books/{book}`  |Remove a specific book       |`BookController@destroy`    |Bearer Token  |
+|GET      |`/api/stores`        |List all stores              |`StoreController@index`     |Bearer Token  |
+|POST     |`/api/stores`        |Create a new store           |`StoreController@store`     |Bearer Token  |
+|GET      |`/api/stores/{store}`|Displays a specific store    |`StoreController@show`      |Bearer Token  |
+|PUT/PATCH|`/api/stores/{store}`|Update a specific store      |`StoreController@update`    |Bearer Token  |
+|DELETE   |`/api/stores/{store}`|Remove a specific store      |`StoreController@destroy`   |Bearer Token  |
 
 
+**Notes:**
 
-**Observações:**
-
--   As rotas que exigem autenticação Bearer Token exigem que o token seja enviado no cabeçalho da requisição.
--   Utilize o Postman ou ferramenta similar para testar a API.
--   Consulte a documentação do Laravel para mais informações sobre as rotas, autenticação e controllers.
--   Este guia é apenas um ponto de partida. Você pode personalizar a aplicação de acordo com suas necessidades.
-
+-   Routes that require Bearer Token authentication require the token to be sent in the request header.
+-   Use Postman or a similar tool to test the API.
+-   Refer to the Laravel documentation for more information about routes, authentication, and controllers.
+-   This guide is just a starting point. You can customize the application according to your needs.
