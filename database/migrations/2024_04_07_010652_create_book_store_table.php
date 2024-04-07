@@ -19,7 +19,7 @@ return new class extends Migration
             ->constrained()
             ->onDelete('cascade');
             $table->primary(['book_id', 'store_id']);
-            $table->timestamps();
+            $table->timestampTz('created_at')->nullable();
         });
     }
 

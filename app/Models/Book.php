@@ -13,6 +13,6 @@ class Book extends Model
 
     public function stores()
     {
-        return $this->belongsToMany(Store::class);
+        return $this->belongsToMany(Store::class)->withPivot('created_at');
     }
 }

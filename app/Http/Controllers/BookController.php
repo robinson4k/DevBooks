@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\Book\BookRequest;
+use App\Http\Requests\BookRequest;
 use App\Models\Book;
 
 class BookController extends Controller
@@ -25,6 +25,7 @@ class BookController extends Controller
         ], [
             'value' => $request->value
         ]);
+        $this->stores($sets, $request);
         return responseJSON([
             'result' => $sets
         ]);
@@ -34,7 +35,7 @@ class BookController extends Controller
     public function show($id)
     {
         return responseJSON([
-            'result' => Book::find($id)
+            'result' => Book::with('stores')->find($id)
         ]);
     }
 
@@ -48,6 +49,7 @@ class BookController extends Controller
                 'isbn' => $request->isbn,
                 'value' => $request->value
             ]);
+            $this->stores($sets, $request);
         }
         return responseJSON([
             'result' => $sets
@@ -61,5 +63,17 @@ class BookController extends Controller
         return responseJSON([
             'result' => $sets ? $sets->delete() : null
         ]);
+    }
+
+
+    private function stores(Book &$sets, $request)
+    {
+        if ($sets) {
+            if (isset($request->stores)) {
+                $sets->sync = $sets->stores()->sync($request->stores);
+            }
+            $sets->stores = $sets->stores()->latest()->get();
+            return $sets;
+        }
     }
 }

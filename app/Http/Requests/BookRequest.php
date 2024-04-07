@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Book;
+namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -17,7 +17,10 @@ class BookRequest extends FormRequest
         return [
             "name" => "required|string|max:255",
             "isbn" => "required|integer",
-            "value" => "required|numeric"
+            "value" => "required|numeric",
+
+            'stores' => 'nullable|array',
+            'stores.*' => 'nullable|integer|exists:stores,id',
         ];
     }
 }
