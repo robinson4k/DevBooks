@@ -5,14 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\BookRequest;
 use App\Models\Book;
+use Inertia\Inertia;
 
 class BookController extends Controller
 {
     public function index(Request $request)
     {
-        $sets = Book::with('stores')->all();
-        return responseJSON([
-            'result' => $sets
+        return Inertia::render('Books/BooksIndex', [
+            'books' => Book::with('stores')->get()
         ]);
     }
 
@@ -34,8 +34,8 @@ class BookController extends Controller
 
     public function show($id)
     {
-        return responseJSON([
-            'result' => Book::with('stores')->find($id)
+        return Inertia::render('Books/BooksForm', [
+            'book' => Book::with('stores')->find($id)
         ]);
     }
 
