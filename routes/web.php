@@ -16,4 +16,4 @@ use App\Http\Controllers\BookController;
 */
 
 Route::get('/', [HomeController::class, 'index']);
-Route::resource('books', BookController::class)->only(['index', 'show']);
+Route::resource('books', BookController::class)->except(['edit']);

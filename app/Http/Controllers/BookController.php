@@ -16,6 +16,14 @@ class BookController extends Controller
         ]);
     }
 
+    
+    public function create()
+    {
+        return Inertia::render('Books/BooksForm', [
+            'book' => new Book
+        ]);
+    }
+
 
     public function store(BookRequest $request)
     {
@@ -25,10 +33,8 @@ class BookController extends Controller
         ], [
             'value' => $request->value
         ]);
-        $this->stores($sets, $request);
-        return responseJSON([
-            'result' => $sets
-        ]);
+        $data = $this->stores($sets, $request);
+        return redirect()->route('books.index')->with($data ? 'success' : 'failed', $data ? 'Saved data' : 'Something went wrong, please try again');
     }
 
 
@@ -51,9 +57,7 @@ class BookController extends Controller
             ]);
             $this->stores($sets, $request);
         }
-        return responseJSON([
-            'result' => $sets
-        ]);
+        return redirect()->route('books.index')->with($sets ? 'success' : 'failed', $sets ? 'Saved data' : 'Something went wrong, please try again');
     }
 
 
