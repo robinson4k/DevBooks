@@ -15,7 +15,7 @@ export default function BooksIndex({books})
     }
     return (
         <>
-            <h1>
+            <h1 className='text-3xl font-bold'>
                 Books - <small><Link href='/books/create'>new</Link></small>
             </h1>
 
