@@ -64,9 +64,8 @@ class BookController extends Controller
     public function destroy($id)
     {
         $sets = Book::find($id);
-        return responseJSON([
-            'result' => $sets ? $sets->delete() : null
-        ]);
+        $isTrue = $sets->delete();
+        return redirect()->back()->with($isTrue ? 'success' : 'failed', $isTrue ? 'Deleted data' : 'Something went wrong, please try again');
     }
 
 

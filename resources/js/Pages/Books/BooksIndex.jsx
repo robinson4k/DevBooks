@@ -1,7 +1,18 @@
 import styles from './Books.module.css'
-import { Link } from '@inertiajs/react'
+import { Link, router } from '@inertiajs/react'
+import { useState } from 'react'
+import BtnDelete from '@/Components/BtnDelete'
 
-export default function BooksIndex({books}) {
+export default function BooksIndex({books})
+{
+    const [data, setData] = useState(books)
+
+    async function handleDeletedBook(bookId) {
+        const newList = data.filter(book => {
+            return book.id != bookId
+        })
+        setData(newList)
+    }
     return (
         <>
             <h1>
@@ -20,17 +31,18 @@ export default function BooksIndex({books}) {
                     <tr>
                         <th></th>
                         <th>id</th>
-                        <th>Nome</th>
+                        <th>Name</th>
                         <th>ISBN</th>
                         <th>Value</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {books.map((item) => {
+                    {data.map((item) => {
                         return (
                             <tr key={item.id}>
                                 <td>
                                     <Link href={route('books.show', item.id)}>Edit</Link>
+                                    <BtnDelete bookId={item.id} onDelete={handleDeletedBook} />
                                 </td>
                                 <td>{item.id}</td>
                                 <td>{item.name}</td>

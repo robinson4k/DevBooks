@@ -1,3 +1,7 @@
 .table_custom {
     width: 100%;
 }
+
+.table_custom tr th {
+    text-align: left;
+}
